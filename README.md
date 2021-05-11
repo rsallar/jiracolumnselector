@@ -1,5 +1,2 @@
 # jiracolumnselector
-Column Selector for Jira Board
-
-Chrome extension:
-https://chrome.google.com/webstore/detail/imphacfmmdcaijhaoclekogljkpcoaic
+[Column Selector for Jira Board](https://github.com/rsallar/jiracolumnselector) for the New Jira Issue View.
