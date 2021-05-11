@@ -1,2 +1,2 @@
 # jiracolumnselector
-[Column Selector for Jira Board](https://github.com/rsallar/jiracolumnselector) updated to work with the New Jira Issue View.
+[Column Selector for Jira Board](https://github.com/rsallar/jiracolumnselector) for the New Jira Issue View.
