@@ -61,9 +61,7 @@ function createDropDownAndHideColumns() {
 	}
 
 	dropdownMenu += '</aui-dropdown-menu>';
-	
-	//$(dropdownMenu).appendTo("#jira");	
-    $(dropdownMenu).appendTo('#ghx-header');
+  $(dropdownMenu).appendTo('#ghx-header');
 	$(document).on('change', '#toggle', toggleColumnFromEvent);
 }
 
