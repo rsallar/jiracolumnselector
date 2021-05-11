@@ -1,4 +1,5 @@
 function addCSS(id, css) {
+
     var head = document.getElementsByTagName('head')[0];
     var s = document.createElement('style');
  
@@ -24,12 +25,11 @@ function toggleColumnFromEvent(event) {
 }
 
 function toggleColumn(columnId){	
-    var column = document.querySelectorAll("li[data-column-id='"+columnId+"']")[0];
-	var columnTarget = document.querySelectorAll("div[data-column-id='"+columnId+"']")[0];
-	var childId = columnId+1;
+  var column = document.querySelectorAll("li[data-id='"+columnId+"']")[0];
+  var columnTarget = document.querySelectorAll("li[data-column-id='"+columnId+"']")[0];
+  var childId = columnId+1;
     
-	var css = '.ghx-zone-overlay-column:nth-child(' + childId + '), .ghx-column:nth-child(' + childId + ') { display: none; }' 
-    + '.column-toggle:nth-child(' + childId + ') {background: #656060 none repeat scroll 0% 0%; color: silver; }'; 
+  var css = '.ghx-zone-overlay-column:nth-child(' + childId + '), .ghx-column:nth-child(' + childId + ') { display: none !important; }' + '.column-toggle:nth-child(' + childId + ') {background: #656060 none repeat scroll 0% 0%; color: silver; }'; 
     
 	if(document.getElementById('hidden-column-' + columnId)) { 
         removeElement('hidden-column-' + columnId);
@@ -42,10 +42,8 @@ function toggleColumn(columnId){
 
  
 function createDropDownAndHideColumns() {
-    var text = "textContent" in document.body ? "textContent" : "innerText"; 
-	
-    var columnNames = document.querySelectorAll('.ghx-column-headers h2');
-
+  var text = "textContent" in document.body ? "textContent" : "innerText"; 	
+  var columnNames = document.querySelectorAll('.ghx-column-headers h2');
 	var dropdown = '<div class="ghx-view-section "><button class="aui-button aui-dropdown2-trigger" aria-controls="columns-dropdown">Columns</button></div>';
 	$(dropdown).appendTo("#ghx-view-pluggable");
 	
@@ -64,7 +62,8 @@ function createDropDownAndHideColumns() {
 
 	dropdownMenu += '</aui-dropdown-menu>';
 	
-	$(dropdownMenu).appendTo("#jira");	
+	//$(dropdownMenu).appendTo("#jira");	
+    $(dropdownMenu).appendTo('#ghx-header');
 	$(document).on('change', '#toggle', toggleColumnFromEvent);
 }
 
@@ -80,9 +79,10 @@ function getParameterByName(name, url) {
 
 var boardId = getParameterByName('rapidView');
 var checkExist = setInterval(function() {
-   if (document.getElementById('ghx-column-headers')) {
-      clearInterval(checkExist);
-	  createDropDownAndHideColumns();
-   }
-   console.log("checking");
-}, 100); 
+  if (document.getElementById('ghx-column-headers') && !document.getElementById('columns-dropdown')) {
+    createDropDownAndHideColumns();
+  }
+}, 1000); 
+setTimeout(function() {
+  clearInterval(checkExist);
+}, 5000);
